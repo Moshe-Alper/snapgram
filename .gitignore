@@ -40,4 +40,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+.prettierrc
+
 // https://www.youtube.com/watch?v=qIO803qh420 
+1:20
