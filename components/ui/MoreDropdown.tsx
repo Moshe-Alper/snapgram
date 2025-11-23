@@ -9,10 +9,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { Button } from "./button"
-import { Menu } from "lucide-react"
+import { Activity, Bookmark, LogOut, Menu, Moon, Settings } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { useState } from "react"
 
 function MoreDropdown() {
+    const [showModeToggle, setShowModeToggle] = useState(false)
   return (
     <DropdownMenu>
         <DropdownMenuTrigger asChild>
@@ -35,16 +37,35 @@ function MoreDropdown() {
         align="end"
         alignOffset={-40}
         >
-            <DropdownMenuItem>
-                <DropdownMenuLabel>Settings</DropdownMenuLabel>
+ {!showModeToggle && (
+          <>
+            <DropdownMenuItem className="menuItem">
+              <Settings size={20} />
+              <p>Settings</p>
             </DropdownMenuItem>
-            <DropdownMenuItem>
-                <DropdownMenuLabel>Help</DropdownMenuLabel>
+            <DropdownMenuItem className="menuItem">
+              <Activity size={20} />
+              <p>Your activity</p>
             </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>
-                <DropdownMenuLabel>Logout</DropdownMenuLabel>
+            <DropdownMenuItem className="menuItem">
+              <Bookmark size={20} />
+              <p>Saved</p>
             </DropdownMenuItem>
+
+            <DropdownMenuItem
+              className="menuItem"
+              onClick={() => setShowModeToggle(true)}
+            >
+              <Moon size={20} />
+              <p>Switch appearance</p>
+            </DropdownMenuItem>
+
+            <DropdownMenuItem className="menuItem" onClick={() => signOut()}>
+              <LogOut size={20} />
+              <p>Log out</p>
+            </DropdownMenuItem>
+          </>
+ )}
         </DropdownMenuContent>
     </DropdownMenu>
   )
